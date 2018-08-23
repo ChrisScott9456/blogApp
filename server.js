@@ -1,13 +1,18 @@
+//Express Setup
 var express = require('express');
 var app = express();
 
-const port = 3000;
+//Port
+var port = 3000;
 
-app.get('/', function(req, res) {
-	
+app.use(express.static(__dirname + "/public"));
+
+app.get('/', function(req, res){
+
+	console.log('Received get request.');
+
 });
 
 app.listen(port, function(){
 	console.log('Server started on port ' + port)
 });
-
