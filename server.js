@@ -3,6 +3,20 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var config = require('./config/database');
+
+//Connect to MongoDB
+mongoose.connect(config.database, { useNewUrlParser: true });
+
+//On MongoDB Connection
+mongoose.connection.on('connected', function(req, res) {
+	console.log('Connected to database ' + config.database);
+});
+
+//On MongoDB Error 
+mongoose.connection.on('error', function(err) {
+	console.log('Database error ' + err);
+});
 
 var app = express();
 
