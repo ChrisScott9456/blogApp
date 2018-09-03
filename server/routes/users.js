@@ -3,10 +3,11 @@ var router = express.Router();
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
 
+//User Schema
 var User = require('../models/users');
 
 // Register
-router.post('/register', function(req, res, next) {
+router.post('/register', function(req, res) {
 	let newUser = new User({
 		name: req.body.name,
 		email: req.body.email,
@@ -18,7 +19,7 @@ router.post('/register', function(req, res, next) {
 		if(err) {
 			res.json({success: false, msg: 'Failed to register user'});
 		}else {
-			res.json({success: true, msg: 'User successfully registered'})
+			res.json({success: true, msg: 'User successfully registered'});
 		}
 	});
 });
