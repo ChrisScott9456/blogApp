@@ -1,17 +1,17 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var cors = require('cors');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const cors = require('cors');
 
-var app = express();
+const app = express();
 
 //Port
-var port = 3000;
+const port = 3000;
 
-var config = require('./config/database');
-var users = require('./server/routes/users');
+const config = require('./config/database');
+const users = require('./server/routes/users');
 
 //Connect to MongoDB
 mongoose.connect(config.database, { useNewUrlParser: true });
@@ -34,6 +34,10 @@ app.use(express.static(path.join(__dirname + 'public')));
 
 //CORS Middleware
 app.use(cors());
+
+//Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/users', users);
 

@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
-var jwt = require('jsonwebtoken');
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 //User Schema
-var User = require('../models/users');
+const User = require('../models/users');
 
 // Register
 router.post('/register', function(req, res) {
