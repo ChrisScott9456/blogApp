@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const cors = require('cors');
 
 const app = express();
 
@@ -11,7 +10,11 @@ const app = express();
 const port = 3000;
 
 const config = require('./config/database');
-const users = require('./server/routes/users');
+const router = require('./server/routes/router');
+
+//Set up View Engine
+app.set('views', path.join(__dirname, '/server/views'))
+app.set('view engine', 'ejs');
 
 //Connect to MongoDB
 mongoose.connect(config.database, { useNewUrlParser: true });
@@ -29,27 +32,19 @@ mongoose.connection.on('error', function(err) {
 //Body-Parser Middleware
 app.use(bodyParser.json());
 
-//Set Static Folder
-app.use(express.static(path.join(__dirname + 'public')));
-
-//CORS Middleware
-app.use(cors());
-
 //Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 require('./config/passport')(passport);
 
-app.use('/users', users);
+//Set Static Folder
+app.use(express.static(path.join(__dirname + '../public')));
 
-
-//Index Route
-app.get('/', function(req, res){
-	res.send('Received get request');
-});
+app.use('/', router);
 
 //Start Server
 app.listen(port, function(){
 	console.log('Server started on port ' + port)
 });
+
+exports = module.exports = app;

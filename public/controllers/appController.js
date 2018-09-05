@@ -1,5 +1,5 @@
-const blogApp = angular.module('blogApp', []);
+const ticketApp = angular.module('ticketApp', ['ngRoute']);
 
-blogApp.controller('blogCtrl', ['$scope', function($scope){
+ticketApp.controller('ticketCtrl', ['$scope', function($scope){
 
 }]);
