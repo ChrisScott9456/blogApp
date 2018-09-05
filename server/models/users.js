@@ -41,3 +41,11 @@ module.exports.addUser = function(newUser, callback){
     });
   });
 }
+
+module.exports.comparePassword = function (password, hash, res) {
+  bcrypt.compare(password, hash, function(err, isMatch) {
+    if(err) throw err;
+
+    res(null, isMatch);
+  });
+}
