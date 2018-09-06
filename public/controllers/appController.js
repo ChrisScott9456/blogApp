@@ -1,9 +1,9 @@
-const ticketApp = angular.module('ticketApp', ['ngRoute']);
+const ticketApp = angular.module('ticketApp', ['ngRoute', 'ngMaterial']);
 
 ticketApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider
-		.when('/test', {
-			templateUrl: '/views/test.html',
+		.when('/post', {
+			templateUrl: '/views/postBody.html',
 		})
 		.otherwise({
 			redirectTo: '/'
