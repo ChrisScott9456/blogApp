@@ -1,23 +1,27 @@
 const ticketApp = angular.module('ticketApp', ['ngRoute', 'ngMaterial']);
 
+
+/******************************AngularJS Routing******************************/
+
 ticketApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/post', {
 			templateUrl: '/views/postBody.html',
 		})
-		.otherwise({
-			redirectTo: '/'
-		});
 
 	$locationProvider.html5Mode(true);
 }]);
 
 
-ticketApp.controller('ticketCtrl', ['$scope', function($scope){
-	$scope.tests = [];
+/******************************AngularJS Controller******************************/
 
-	$scope.tests[0] = 0;
-	$scope.tests[1] = 1;
-	$scope.tests[2] = 2;
+ticketApp.controller('ticketCtrl', ['$scope', '$http', function($scope, $http){
 	
+	$scope.testButton = function() {
+		console.log('Test button click');
+		return $http.get('/sendPost').then(function(res) {
+			console.log(res);
+		});
+	};
+
 }]);
