@@ -17,11 +17,11 @@ ticketApp.config(['$routeProvider', '$locationProvider', function($routeProvider
 
 ticketApp.controller('ticketCtrl', ['$scope', '$http', function($scope, $http){
 	
-	$scope.testButton = function() {
+	$scope.postButton = function() {
 		console.log('Test button click');
-		return $http.get('/sendPost').then(function(res) {
+		var testJSON = {_id: 1};
+		return $http.post('/createPost', testJSON).then(function(res) {
 			console.log(res);
 		});
 	};
-
 }]);
