@@ -16,14 +16,15 @@ router.get('/getPost/:value', function(req, res) {
 		if(resp) {
 			res.send(resp);
 		}else {
-			console.log('Failed to retrieve that record from Posts collection');
+			console.log('Failed to retrieve that record from Posts collection!');
 		}
 	});
 });
 
 router.post('/createPost', function(req, res) {
 	let newPost = new Post({
-		_id: req.body._id
+		_id: req.body._id,
+		comments: req.body.comments
 	});
 
 	Post.createPost(newPost, function(err) {

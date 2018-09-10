@@ -8,7 +8,7 @@ const postSchema = new Schema({
     type: Number,
     required: true,
     default: 0
-  }
+  },
   // type: {
   //   type: String,
   //   required: true,
@@ -43,6 +43,10 @@ const postSchema = new Schema({
   // resolution: {
   //   type: String
   // }
+  comments: {
+    type: String,
+    default: ''
+  }
 },
 
 { collection: 'Posts' });
