@@ -1,3 +1,4 @@
+const express = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -48,6 +49,16 @@ const postSchema = new Schema({
 
 const Post = module.exports = mongoose.model('Post', postSchema);
 
+//GET Call for Posts
+module.exports.getPost = function(id, res) {
+  Post.findById(id, function(err, post) {
+    if(err) throw err;
+
+    res(post);
+  });
+}
+
+//POST Call for Posts
 module.exports.createPost = function(newPost, res) {
   newPost.save(res);
 }

@@ -18,10 +18,19 @@ ticketApp.config(['$routeProvider', '$locationProvider', function($routeProvider
 ticketApp.controller('ticketCtrl', ['$scope', '$http', function($scope, $http){
 	
 	$scope.postButton = function() {
-		console.log('Test button click');
-		var testJSON = {_id: 1};
-		return $http.post('/createPost', testJSON).then(function(res) {
+		var postJSON = {_id: 1};
+
+		return $http.post('/createPost', postJSON).then(function(res) {
 			console.log(res);
 		});
 	};
+
+	$scope.getButton = function() {
+		var getID = 1;
+
+		return $http.get('/getPost/' + getID).then(function(res) {
+			console.log(res);
+		});
+	};
+
 }]);
